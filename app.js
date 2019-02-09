@@ -4,20 +4,31 @@ const yargs = require("yargs");
 //my modulues
 const notes = require("./notes");
 
+const titleObj = {
+  describe: "Title of note",
+  //have to provide a title when using add command
+  demand: true,
+  //shortcut
+  alias: "t"
+};
+
+const bodyObj = {
+  describe: "Body of note",
+  demand: true,
+  alias: "b"
+};
+
 const argv = yargs
   .command("add", "Add a new note", {
-    title: {
-      describe: "Title of note",
-      //have to provide a title when using add command
-      demand: true,
-      //shortcut
-      alias: "t"
-    },
-    body: {
-      describe: "Body of note",
-      demand: true,
-      alias: "b"
-    }
+    title: titleObj,
+    body: bodyObj
+  })
+  .command("list", "List all notes")
+  .command("read", "read a note", {
+    title: titleObj
+  })
+  .command("remove", "Remove a note", {
+    title: titleObj
   })
   .help().argv;
 const command = argv._[0];
