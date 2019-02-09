@@ -1,15 +1,26 @@
-console.log("starting app.");
-
 const fs = require("fs");
 const _ = require("lodash");
 const yargs = require("yargs");
 //my modulues
 const notes = require("./notes");
 
-const argv = yargs.argv;
+const argv = yargs
+  .command("add", "Add a new note", {
+    title: {
+      describe: "Title of note",
+      //have to provide a title when using add command
+      demand: true,
+      //shortcut
+      alias: "t"
+    },
+    body: {
+      describe: "Body of note",
+      demand: true,
+      alias: "b"
+    }
+  })
+  .help().argv;
 const command = argv._[0];
-console.log("command", command);
-console.log("Yargs", argv);
 
 if (command === "add") {
   let note = notes.addNote(argv.title, argv.body);
