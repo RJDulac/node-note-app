@@ -32,7 +32,7 @@ const addNote = (title, body) => {
   }
 };
 const getAll = () => {
-  console.log("Getting all notes");
+  return fetchNotes();
 };
 const getNote = title => {
   let notes = fetchNotes();
@@ -47,6 +47,7 @@ const removeNote = title => {
   return notes.length !== filteredNotes.length;
 };
 const logNote = note => {
+  debugger;
   console.log("----------------------");
   console.log(`Title: ${note.title}`);
   console.log(`Body: ${note.body}`);
